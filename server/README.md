@@ -8,10 +8,10 @@ The project is structure as this:
 ### API
 This package is where the API logic layer is kept, its subdivided between two layers
 
-#### Controllers
+#### - Controllers
 This is where the business logic of the application resides, it does not worry about input validation, serializing/deserialing data, or handling the read/write of data from source. This part of the application should have only the single responsiblity of dealing with how the application should work.
 
-#### Handlers
+#### - Handlers
 This is the layer where the validate, serialize and deserialize, and correctly receive and respond to http requests. Currently we're using Go standard `http` package and only handling `REST` calls. 
 
 But by having the handlers and controllers dettached, our application can easily be refactored in the future to have different interfaces with the external world, like JRPC handlers, or messaging queues consumer/producers for event driven handlers.
@@ -26,13 +26,13 @@ This package is where everyhing data specific is kept, other packages will use t
 
 The storage code is divided as this:
 
-#### Entities
+#### - Entities
 
 The representation of all data types the application will have (User, Secret, etc). We can have different versions of the same entity for different purposes, for instance:
 - one struct that will be saved in our data persistance layer with all the fields, like `id`, `created_at`, `updated_at`, etc. 
 - one struct that will be used to represent a new instance of that entity, a `NewUser` that does not have yet persistence specific fields
 
-#### Stores
+#### - Stores
 
 The application needs to store the entities into `Data sources` so we can read/write different entities (Users, Secrets, etc). This project uses a `Store` interface to make it simple to swap data sources implementations if needed.
 
