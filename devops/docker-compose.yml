@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    env_file:
+      - ../server/.env
+    volumes:
+      - ./postgres-data/:/postgres-data/db
+    networks:
+      secret_api_srv:
+
+
+networks:
+  secret_api_srv:
